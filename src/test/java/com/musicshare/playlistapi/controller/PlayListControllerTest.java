@@ -54,7 +54,6 @@ public class PlayListControllerTest {
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.name").value("playlist1"))
                 .andExpect(jsonPath("$.songs", hasSize(0)));
-
     }
 
     /**
@@ -83,17 +82,13 @@ public class PlayListControllerTest {
         mockMvc.perform(post("/api/v1/playlist")
                 .param("name", "playlist1"))
                 .andExpect(status().isCreated());
-
         Song song = Song.builder()
                 .songName("song1").build();
-
         mockMvc.perform(post("/api/v1/playlist/{playlistName}/song", "playlist1")
-
                 .content(objectMapper.writeValueAsString(song)).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("playlist1"))
                 .andExpect(jsonPath("$.songs", hasSize(1)));
-
     }
 
     /**
@@ -103,20 +98,15 @@ public class PlayListControllerTest {
      */
     @Test
     public void test_deleteSongFromPlaylist() throws Exception {
-
         Song song1 = Song.builder().songName("song1").build();
         Song song2 = Song.builder().songName("song2").build();
         createPlayListWithTwoSongs("playlist1", song1, song2);
-
-
         mockMvc.perform(delete("/api/v1/playlist/{playlistName}/song", "playlist1")
                 .content(objectMapper.writeValueAsString(song1))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("playlist1"))
                 .andExpect(jsonPath("$.songs", hasSize(1)));
-
-
     }
 
     private void createPlayListWithTwoSongs(String playlistName, Song song1, Song song2) throws IsNotFoundException, DuplicatePlayListException {
@@ -135,12 +125,8 @@ public class PlayListControllerTest {
 
     @Test
     public void test_addNonExistentSongToPlayList() throws Exception {
-
-
         setupDataForNonExistentSong();
-
         Song song = Song.builder()
-
                 .songName("noSong").build();
         mockMvc.perform(post("/api/v1/playlist/{playlistName}/song", "playlist1")
                 .content(objectMapper.writeValueAsString(song))
@@ -154,10 +140,8 @@ public class PlayListControllerTest {
         mockMvc.perform(post("/api/v1/playlist")
                 .param("name", "playlist1"))
                 .andExpect(status().isCreated());
-
         Song song1 = Song.builder()
                 .songName("song1").build();
-
         mockMvc.perform(post("/api/v1/playlist/{playlistName}/song", "playlist1")
                 .content(objectMapper.writeValueAsString(song1)).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -166,11 +150,8 @@ public class PlayListControllerTest {
                 .andExpect(jsonPath("$.songs", hasSize(1)));
     }
 
-
-
     @Test
     public void test_createDuplicatePlayList() throws Exception {
-
         mockMvc.perform(post("/api/v1/playlist")
                 .param("name", "playlist1"))
                 .andExpect(status().isCreated());
@@ -178,10 +159,6 @@ public class PlayListControllerTest {
         mockMvc.perform(post("/api/v1/playlist")
                 .param("name", "playlist1"))
                 .andExpect(status().isBadRequest())
-        .andExpect(status().reason("duplicate playlist"));
-
-
+                .andExpect(status().reason("duplicate playlist"));
     }
-
-
 }
