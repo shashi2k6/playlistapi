@@ -12,10 +12,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Table(name = "song", uniqueConstraints = @UniqueConstraint(columnNames = {"songName"}))
 public class Song {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     @Column(name = "songName")
     private String songName;
 }

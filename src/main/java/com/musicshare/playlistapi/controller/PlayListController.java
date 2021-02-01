@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/playlist")
 public class PlayListController {
@@ -34,6 +36,20 @@ public class PlayListController {
     @DeleteMapping("{playlistName}/song")
     public PlayList deleteSongFromPlayList(@PathVariable String playlistName, @RequestBody Song song) {
         return playListService.deleteSongFromPlayList(playlistName, song);
+    }
 
+    @GetMapping("/")
+    public List<PlayList> getAllPlayList() throws IsNotFoundException {
+        return playListService.getAllPlayList();
+    }
+
+    @GetMapping("{playlistName}")
+    public PlayList getSongsInPlaylist(@PathVariable String playlistName) throws IsNotFoundException {
+        return playListService.getSongsInPlaylist(playlistName);
+    }
+
+    @GetMapping("/songlist")
+    public List<Song> getAllSongs() throws IsNotFoundException {
+        return playListService.getAllSongs();
     }
 }

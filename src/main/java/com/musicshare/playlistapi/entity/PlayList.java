@@ -15,13 +15,14 @@ import java.util.List;
 @Entity
 @Builder
 @Table(name = "playlist", uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
-
 public class PlayList {
+
     @Id
     @GeneratedValue
     private Long id;
 
     private String name;
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Song> songs;
 
