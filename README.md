@@ -2,7 +2,6 @@
 
 Music Share is a playlist service where users can create music lists and share them with others.
 
----
 
 ## `Acceptance Tests :`
 
@@ -12,7 +11,6 @@ Music Share is a playlist service where users can create music lists and share t
 4. Playlists are named.
 5. Playlists are unique.
 
----
 
 ### `Use case 1 :`
 
@@ -45,7 +43,6 @@ Music Share is a playlist service where users can create music lists and share t
 - [x] Then the playlist still has 1 song
 - [x] And a message is returned that the song doesn't exist.
 
----
 
 ### `Build commands :`
 
