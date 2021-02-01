@@ -13,6 +13,7 @@ Music Share is a playlist service where users can create music lists and share t
 5. Playlists are unique.
 
 ---
+
 ### `Use case 1 :`
 
 - [x] When a playlist is created with a name
