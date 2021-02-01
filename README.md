@@ -12,34 +12,34 @@ Music Share is a playlist service where users can create music lists and share t
 
 ### `Use case 1 :`
 
-- [ ] When a playlist is created with a name
-- [ ] Then a confirmation is returned that it was successful.
-- [ ] And the playlist is empty.
+- [x] When a playlist is created with a name
+- [x] Then a confirmation is returned that it was successful.
+- [X] And the playlist is empty.
 
 ### `Use case 2 :`
 
-- [ ] When a playlist is created without a name
-- [ ] Then a message is returned that a name is required.
+- [x] When a playlist is created without a name
+- [x] Then a message is returned that a name is required.
 
 ### `Use case 3 :`
 
-- [ ] Given an empty playlist
-- [ ] When an song is added
-- [ ] Then the playlist has 1 song
+- [x] Given an empty playlist
+- [x] When an song is added
+- [x] Then the playlist has 1 song
 
 ### `Use case 4 :`
 
-- [ ] Given a playlist with 2 songs
-- [ ] When a song is removed
-- [ ] Then the playlist has 1 song.
+- [x] Given a playlist with 2 songs
+- [x] When a song is removed
+- [x] Then the playlist has 1 song.
 
 ### `Use case 5 :`
 
-- [ ] Given a song doesn't exist
-- [ ] And a playlist with 1 song
-- [ ] When the song is added to the playlist
-- [ ] Then the playlist still has 1 song
-- [ ] And a message is returned that the song doesn't exist.
+- [x] Given a song doesn't exist
+- [x] And a playlist with 1 song
+- [x] When the song is added to the playlist
+- [x] Then the playlist still has 1 song
+- [x] And a message is returned that the song doesn't exist.
 
 ### `Heroku url :`
 
