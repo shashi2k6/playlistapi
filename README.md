@@ -12,10 +12,9 @@ Music Share is a playlist service where users can create music lists and share t
 
 ### `Use case 1 :`
 
-  -[ ] When a playlist is created with a name
-   
-  -[ ] Then a confirmation is returned that it was successful.
-  -[ ] And the playlist is empty.
+  - [ ] When a playlist is created with a name
+  - [ ] Then a confirmation is returned that it was successful.
+  - [ ] And the playlist is empty.
 
 ### `Use case 2 :`
 
