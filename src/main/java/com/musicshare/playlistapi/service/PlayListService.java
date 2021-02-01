@@ -16,11 +16,17 @@ import java.util.List;
 public class PlayListService {
 
     @Autowired
-    PlayListRepository playListRepository;
+    private PlayListRepository playListRepository;
 
     @Autowired
-    SongRepository songRepository;
+    private SongRepository songRepository;
 
+    /**
+     *
+     * @param name
+     * @return
+     * @throws DuplicatePlayListException
+     */
     public PlayList createPlayListWithName(String name) throws DuplicatePlayListException {
         PlayList playList = PlayList.builder()
                 .name(name)
@@ -33,6 +39,13 @@ public class PlayListService {
         return playListRepository.save(playList);
     }
 
+    /**
+     *
+     * @param playListName
+     * @param song
+     * @return
+     * @throws IsNotFoundException
+     */
     public PlayList addSongsToPlayList(String playListName, Song song) throws IsNotFoundException {
         PlayList playList = playListRepository.findByName(playListName);
         Song songFromDb = songRepository.findBySongName(song.getSongName());
@@ -50,6 +63,12 @@ public class PlayListService {
         return playListRepository.save(playList);
     }
 
+    /**
+     *
+     * @param playListName
+     * @param song
+     * @return
+     */
     public PlayList deleteSongFromPlayList(String playListName, Song song) {
         PlayList playList = playListRepository.findByName(playListName);
         List<Song> songInPlayList = playList.getSongs();
@@ -58,14 +77,27 @@ public class PlayListService {
         return playListRepository.save(playList);
     }
 
+    /**
+     *
+     * @return
+     */
     public List<PlayList> getAllPlayList() {
         return playListRepository.findAll();
     }
 
+    /**
+     *
+     * @param playListName
+     * @return
+     */
     public PlayList getSongsInPlaylist(String playListName) {
         return playListRepository.findByName(playListName);
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Song> getAllSongs() {
         return songRepository.findAll();
     }

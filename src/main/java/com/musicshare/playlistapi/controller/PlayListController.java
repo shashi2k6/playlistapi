@@ -17,8 +17,15 @@ import java.util.List;
 public class PlayListController {
 
     @Autowired
-    PlayListService playListService;
+    private PlayListService playListService;
 
+    /**
+     *
+     * @param name
+     * @return
+     * @throws NameRequiredException
+     * @throws DuplicatePlayListException
+     */
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
     public PlayList createPlayListWithName(@RequestParam String name) throws NameRequiredException, DuplicatePlayListException {
@@ -28,26 +35,55 @@ public class PlayListController {
         return playListService.createPlayListWithName(name);
     }
 
+    /**
+     *
+     * @param playlistName
+     * @param song
+     * @return
+     * @throws IsNotFoundException
+     */
     @PostMapping("{playlistName}/song")
     public PlayList addSongsToPlayList(@PathVariable String playlistName, @RequestBody Song song) throws IsNotFoundException {
         return playListService.addSongsToPlayList(playlistName, song);
     }
 
+    /**
+     *
+     * @param playlistName
+     * @param song
+     * @return
+     */
     @DeleteMapping("{playlistName}/song")
     public PlayList deleteSongFromPlayList(@PathVariable String playlistName, @RequestBody Song song) {
         return playListService.deleteSongFromPlayList(playlistName, song);
     }
 
+    /**
+     *
+     * @return
+     * @throws IsNotFoundException
+     */
     @GetMapping("/")
     public List<PlayList> getAllPlayList() throws IsNotFoundException {
         return playListService.getAllPlayList();
     }
 
+    /**
+     *
+     * @param playlistName
+     * @return
+     * @throws IsNotFoundException
+     */
     @GetMapping("{playlistName}")
     public PlayList getSongsInPlaylist(@PathVariable String playlistName) throws IsNotFoundException {
         return playListService.getSongsInPlaylist(playlistName);
     }
 
+    /**
+     *
+     * @return
+     * @throws IsNotFoundException
+     */
     @GetMapping("/songlist")
     public List<Song> getAllSongs() throws IsNotFoundException {
         return playListService.getAllSongs();
