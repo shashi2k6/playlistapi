@@ -29,13 +29,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class PlayListControllerTest {
 
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @Autowired
-    ObjectMapper objectMapper;
+    private ObjectMapper objectMapper;
 
     @Autowired
-    PlayListService playListService;
+    private PlayListService playListService;
 
     /**
      * When a playlist is created with a name
@@ -47,7 +47,6 @@ public class PlayListControllerTest {
 
     @Test
     public void test_createPlayListWithName() throws Exception {
-
         mockMvc.perform(post("/api/v1/playlist")
                 .param("name", "playlist1"))
                 .andExpect(status().isCreated())
@@ -65,7 +64,6 @@ public class PlayListControllerTest {
 
     @Test
     public void test_createPlayListWithoutName() throws Exception {
-
         mockMvc.perform(post("/api/v1/playlist")
                 .param("name", ""))
                 .andExpect(status().isBadRequest())
@@ -82,8 +80,7 @@ public class PlayListControllerTest {
         mockMvc.perform(post("/api/v1/playlist")
                 .param("name", "playlist1"))
                 .andExpect(status().isCreated());
-        Song song = Song.builder()
-                .songName("song1").build();
+        Song song = Song.builder().songName("song1").build();
         mockMvc.perform(post("/api/v1/playlist/{playlistName}/song", "playlist1")
                 .content(objectMapper.writeValueAsString(song)).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -109,6 +106,14 @@ public class PlayListControllerTest {
                 .andExpect(jsonPath("$.songs", hasSize(1)));
     }
 
+    /**
+     *
+     * @param playlistName
+     * @param song1
+     * @param song2
+     * @throws IsNotFoundException
+     * @throws DuplicatePlayListException
+     */
     private void createPlayListWithTwoSongs(String playlistName, Song song1, Song song2) throws IsNotFoundException, DuplicatePlayListException {
         playListService.createPlayListWithName(playlistName);
         playListService.addSongsToPlayList("playlist1", song1);
@@ -136,6 +141,10 @@ public class PlayListControllerTest {
                 .andExpect(status().reason("song doesn't exist"));
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     private void setupDataForNonExistentSong() throws Exception {
         mockMvc.perform(post("/api/v1/playlist")
                 .param("name", "playlist1"))
@@ -150,6 +159,10 @@ public class PlayListControllerTest {
                 .andExpect(jsonPath("$.songs", hasSize(1)));
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void test_createDuplicatePlayList() throws Exception {
         mockMvc.perform(post("/api/v1/playlist")
