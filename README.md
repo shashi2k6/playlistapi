@@ -2,6 +2,8 @@
 
 Music Share is a playlist service where users can create music lists and share them with others.
 
+---
+
 ## `Acceptance Tests :`
 
 1. Playlists are empty on creation.
@@ -10,6 +12,7 @@ Music Share is a playlist service where users can create music lists and share t
 4. Playlists are named.
 5. Playlists are unique.
 
+---
 ### `Use case 1 :`
 
 - [x] When a playlist is created with a name
@@ -41,6 +44,10 @@ Music Share is a playlist service where users can create music lists and share t
 - [x] Then the playlist still has 1 song
 - [x] And a message is returned that the song doesn't exist.
 
+---
+
 ### `Heroku url :`
 
 URL : https://playlistap.herokuapp.com/swagger-ui.html
+
+---
