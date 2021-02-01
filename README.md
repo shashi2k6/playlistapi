@@ -48,13 +48,21 @@ Music Share is a playlist service where users can create music lists and share t
 
 ### `Build commands :`
 
-- docker build . -t playlistap
-- heroku git:remote -a playlistap
-- Git remote -v
-- heroku login
-- heroku container:login
-- heroku container:push web
-- heroku container:release web
+```sh
+$ docker build . -t playlistap
+
+$ heroku git:remote -a playlistap
+
+$ git remote -v
+
+$ heroku login
+
+$ heroku container:login
+
+$ heroku container:push web
+
+$ heroku container:release web
+```
 
 ### `Heroku url (from Salesforce):`
 
