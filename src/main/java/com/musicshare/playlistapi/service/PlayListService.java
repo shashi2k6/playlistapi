@@ -44,7 +44,7 @@ public class PlayListService {
                 songs.add(songFromDb);
                 playList.setSongs(songs);
             } else {
-                playList.getSongs().add(song);
+                playList.getSongs().add(songFromDb);
             }
         }
         return playListRepository.save(playList);
@@ -52,9 +52,9 @@ public class PlayListService {
 
     public PlayList deleteSongFromPlayList(String playListName, Song song) {
         PlayList playList = playListRepository.findByName(playListName);
-        List<Song> songList = playList.getSongs();
-        songList.remove(song);
-        playList.setSongs(songList);
+        List<Song> songInPlayList = playList.getSongs();
+        System.out.println("songList = " + songInPlayList.size());
+        songInPlayList.removeIf(songDB -> songDB.getSongName().equals(song.getSongName()));
         return playListRepository.save(playList);
     }
 
