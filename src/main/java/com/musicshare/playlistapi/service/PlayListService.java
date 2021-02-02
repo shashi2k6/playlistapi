@@ -53,9 +53,7 @@ public class PlayListService {
             throw new IsNotFoundException();
         } else {
             if (playList.getSongs().size() < 1) {
-                List<Song> songs = new ArrayList<>();
-                songs.add(songFromDb);
-                playList.setSongs(songs);
+                playList.setSongs(List.of(song));
             } else {
                 playList.getSongs().add(songFromDb);
             }
@@ -72,7 +70,6 @@ public class PlayListService {
     public PlayList deleteSongFromPlayList(String playListName, Song song) {
         PlayList playList = playListRepository.findByName(playListName);
         List<Song> songInPlayList = playList.getSongs();
-        System.out.println("songList = " + songInPlayList.size());
         songInPlayList.removeIf(songDB -> songDB.getSongName().equals(song.getSongName()));
         return playListRepository.save(playList);
     }
